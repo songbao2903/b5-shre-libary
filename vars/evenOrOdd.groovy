@@ -1,26 +1,22 @@
-// vars/evenOrOdd.groovy
-def call(int buildNumber) {
-  if (buildNumber % 2 == 0) {
-    pipeline {
-      agent any
-      stages {
-        stage('Even Stage') {
-          steps {
-            echo "The build number is even"
-          }
-        }
-      }
+pipeline {
+    agent { label "master" }
+
+    libraries {
+        lib('github.com/songbao2903/b5-shre-libary@main')
     }
-  } else {
-    pipeline {
-      agent any
-      stages {
-        stage('Odd Stage') {
-          steps {
-            echo "The build number is odd"
-          }
+
+    stages {
+        stage("Echostage") {
+            steps {
+               echo "foo"
+            }
         }
-      }
     }
-  }
-}
+    post {
+        always {
+            script {
+                sendEmail(currentBuild, ['momnhuong@gmail.com'])
+            }
+        }
+    }
+}"""
