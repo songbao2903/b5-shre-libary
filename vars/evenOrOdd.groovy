@@ -1,8 +1,8 @@
 pipeline {
-    agent { label "main" }
+    agent { label "master" }
 
     libraries {
-        lib('github.com/songbao2903/b5-shre-libary@main')
+        lib('github.com/cfpb/jenkins-shared-libraries@main')
     }
 
     stages {
